@@ -1,13 +1,13 @@
-/* Enter your custom styles here */
+/* Enter your custom styles here
 /* Quantity Survey - custom styles
    Layout/spacing only. Colors, fonts and radii come from theme parameters. */
 
-/* Page title sits in the content area, so give it standard Fiori spacing */
+/* Page title sits in the content area, so give it standard Fiori spacing 
 .qsPageTitle {
     margin: 1rem 1rem 0.5rem;
 }
 
-/* Card container for the filter bar and the table */
+/* Card container for the filter bar and the table 
 .qsCard {
     background: var(--sapGroup_ContentBackground);
     border: 1px solid var(--sapGroup_ContentBorderColor);
@@ -16,9 +16,9 @@
     margin: 0 1rem 1rem;
     overflow: hidden;
     /* clips table corners to the card radius */
-}
 
-/* "Number of Records: n" row above the table */
+
+/* "Number of Records: n" row above the table 
 .qsRecordCount {
     padding: 0.75rem 1rem;
     gap: 0.25rem;
@@ -28,7 +28,7 @@
     font-weight: bold;
 }
 
-/* Phones: tighter outer margins */
+/* Phones: tighter outer margins 
 @media (max-width: 599px) {
     .qsPageTitle {
         margin: 0.75rem 0.5rem 0.5rem;
@@ -37,4 +37,4 @@
     .qsCard {
         margin: 0 0.5rem 0.5rem;
     }
-}
+} */

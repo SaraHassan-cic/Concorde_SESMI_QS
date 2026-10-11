@@ -75,6 +75,10 @@
       "home": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/mockdata/home.json"
+      },
+      "valueHelp": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/mockdata/ValueHelp.json"
       }
     },
     "resources": {

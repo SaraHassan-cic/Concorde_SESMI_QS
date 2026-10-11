@@ -1,0 +1,64 @@
+{
+    "ValueHelpSet": [
+        {
+            "valueHelpType": "CompCode",
+            "idNumber": "1000",
+            "idText": "Company 1000"
+        },
+        {
+            "valueHelpType": "CompCode",
+            "idNumber": "2000",
+            "idText": "Company 2000"
+        },
+        {
+            "valueHelpType": "CompCode",
+            "idNumber": "3000",
+            "idText": "Company 3000"
+        },
+        {
+            "valueHelpType": "Project",
+            "idNumber": "P-1001",
+            "idText": "Block A"
+        },
+        {
+            "valueHelpType": "Project",
+            "idNumber": "P-1002",
+            "idText": "Tower 1"
+        },
+        {
+            "valueHelpType": "Project",
+            "idNumber": "P-1003",
+            "idText": "Site Roads"
+        },
+        {
+            "valueHelpType": "ContCode",
+            "idNumber": "4500001001",
+            "idText": "Civil Works - Block A"
+        },
+        {
+            "valueHelpType": "ContCode",
+            "idNumber": "4500001002",
+            "idText": "MEP Installation - Tower 1"
+        },
+        {
+            "valueHelpType": "ContCode",
+            "idNumber": "4500001003",
+            "idText": "Finishing Works - Block B"
+        },
+        {
+            "valueHelpType": "Vendor",
+            "idNumber": "V-100",
+            "idText": "Alpha Construction Co."
+        },
+        {
+            "valueHelpType": "Vendor",
+            "idNumber": "V-200",
+            "idText": "Delta MEP Contractors"
+        },
+        {
+            "valueHelpType": "Vendor",
+            "idNumber": "V-300",
+            "idText": "Nile Finishing Ltd."
+        }
+    ]
+}
