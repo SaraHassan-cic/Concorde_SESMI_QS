@@ -1,0 +1,18 @@
+<mvc:View controllerName="cic.org.quantitysurvey.controller.Details"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+
+    <Page id="detailsPage" showNavButton="true" navButtonPress=".onNavBack">
+        <content>
+            <Panel>
+                <content>
+                    <HBox justifyContent="SpaceBetween" class="sapUiMediumMargin">
+                        <Title
+                            text="{details>/poNumber}" />
+                    </HBox>
+                </content>
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

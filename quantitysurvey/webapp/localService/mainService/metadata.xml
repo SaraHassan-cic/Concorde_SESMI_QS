@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZINVOICEMANAGE_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZTInvoice" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="VendorId"/>
+                    <PropertyRef Name="InvoiceNo"/>
+                </Key>
+                <Property Name="InvoiceId" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="INVOICE_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VendorId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="VENDOR_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InvoiceNo" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="INVOICE_NO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VendorName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="VENDOR_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Amount" Type="Edm.Decimal" Nullable="false" Precision="14" Scale="3" sap:unicode="false" sap:label="AMOUNT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="STATUS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InvoiceDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="INVOICE_DATE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VendorEmail" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="VENDOR_EMAIL" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VendorPhone" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="VENDOR_PHONE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="CREATED_BY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedOn" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="CREATED_ON" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ApprovedBy" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="APPROVED_BY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ApprovedOn" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="APPROVED_ON" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="HeaderToItemsNav" Relationship="ZINVOICEMANAGE_SRV.HeaderToItemsAss" FromRole="FromRole_HeaderToItemsAss" ToRole="ToRole_HeaderToItemsAss"/>
+            </EntityType>
+            <EntityType Name="ZInvoiceItem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="InvoiceNo"/>
+                    <PropertyRef Name="VendorId"/>
+                    <PropertyRef Name="ItemNo"/>
+                </Key>
+                <Property Name="InvoiceId" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="INVOICE_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaterialId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="MATERIAL_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InvoiceNo" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="INVOICE_NO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LineTotal" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="LINE_TOTAL" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VendorId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="VENDOR_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ItemNo" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="ITEM_NO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Quantity" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="QUANTITY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UnitPrice" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="UNIT_PRICE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="MaterialToItemsNav" Relationship="ZINVOICEMANAGE_SRV.MaterialToItemsAss" FromRole="ToRole_MaterialToItemsAss" ToRole="FromRole_MaterialToItemsAss"/>
+            </EntityType>
+            <EntityType Name="ZTMaterial" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MaterialId"/>
+                </Key>
+                <Property Name="MaterialId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="MATERIAL_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaterialName" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="MATERIAL_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Category" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="CATEGORY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="DESCRIPTION" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="MaterialToItemsNav" Relationship="ZINVOICEMANAGE_SRV.MaterialToItemsAss" FromRole="FromRole_MaterialToItemsAss" ToRole="ToRole_MaterialToItemsAss"/>
+            </EntityType>
+            <EntityType Name="ZVendorInfo" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="VendorId"/>
+                </Key>
+                <Property Name="VendorId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="VENDOR_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VendorName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="VENDOR_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VendorEmail" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="VENDOR_EMAIL" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VendorPhone" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="VENDOR_PHONE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VendorAddress" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="VENDOR_ADDRESS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="VendorToItemsNav" Relationship="ZINVOICEMANAGE_SRV.VendorToItemsAss" FromRole="FromRole_VendorToItemsAss" ToRole="ToRole_VendorToItemsAss"/>
+            </EntityType>
+            <Association Name="HeaderToItemsAss" sap:content-version="1">
+                <End Type="ZINVOICEMANAGE_SRV.ZTInvoice" Multiplicity="1" Role="FromRole_HeaderToItemsAss"/>
+                <End Type="ZINVOICEMANAGE_SRV.ZInvoiceItem" Multiplicity="*" Role="ToRole_HeaderToItemsAss"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_HeaderToItemsAss">
+                        <PropertyRef Name="VendorId"/>
+                        <PropertyRef Name="InvoiceNo"/>
+                    </Principal>
+                    <Dependent Role="ToRole_HeaderToItemsAss">
+                        <PropertyRef Name="VendorId"/>
+                        <PropertyRef Name="InvoiceNo"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MaterialToItemsAss" sap:content-version="1">
+                <End Type="ZINVOICEMANAGE_SRV.ZTMaterial" Multiplicity="1" Role="FromRole_MaterialToItemsAss"/>
+                <End Type="ZINVOICEMANAGE_SRV.ZInvoiceItem" Multiplicity="1" Role="ToRole_MaterialToItemsAss"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MaterialToItemsAss">
+                        <PropertyRef Name="MaterialId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MaterialToItemsAss">
+                        <PropertyRef Name="MaterialId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="VendorToItemsAss" sap:content-version="1">
+                <End Type="ZINVOICEMANAGE_SRV.ZVendorInfo" Multiplicity="1" Role="FromRole_VendorToItemsAss"/>
+                <End Type="ZINVOICEMANAGE_SRV.ZTInvoice" Multiplicity="*" Role="ToRole_VendorToItemsAss"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_VendorToItemsAss">
+                        <PropertyRef Name="VendorId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_VendorToItemsAss">
+                        <PropertyRef Name="VendorId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZINVOICEMANAGE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZTInvoiceSet" EntityType="ZINVOICEMANAGE_SRV.ZTInvoice" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ZInvoiceItemSet" EntityType="ZINVOICEMANAGE_SRV.ZInvoiceItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ZTMaterialSet" EntityType="ZINVOICEMANAGE_SRV.ZTMaterial" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ZVendorInfoSet" EntityType="ZINVOICEMANAGE_SRV.ZVendorInfo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="HeaderToItemsAssSet" Association="ZINVOICEMANAGE_SRV.HeaderToItemsAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZTInvoiceSet" Role="FromRole_HeaderToItemsAss"/>
+                    <End EntitySet="ZInvoiceItemSet" Role="ToRole_HeaderToItemsAss"/>
+                </AssociationSet>
+                <AssociationSet Name="VendorToItemsAssSet" Association="ZINVOICEMANAGE_SRV.VendorToItemsAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZVendorInfoSet" Role="FromRole_VendorToItemsAss"/>
+                    <End EntitySet="ZTInvoiceSet" Role="ToRole_VendorToItemsAss"/>
+                </AssociationSet>
+                <AssociationSet Name="MaterialToItemsAssSet" Association="ZINVOICEMANAGE_SRV.MaterialToItemsAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZTMaterialSet" Role="FromRole_MaterialToItemsAss"/>
+                    <End EntitySet="ZInvoiceItemSet" Role="ToRole_MaterialToItemsAss"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="http://demo.cic.local:8005/sap/opu/odata/sap/ZINVOICEMANAGE_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://demo.cic.local:8005/sap/opu/odata/sap/ZINVOICEMANAGE_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

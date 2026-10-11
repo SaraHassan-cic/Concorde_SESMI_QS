@@ -1,0 +1,114 @@
+<mvc:View controllerName="cic.org.quantitysurvey.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:fb="sap.ui.comp.filterbar"
+    displayBlock="true">
+
+    <Page id="homePage">
+        <content>
+            <!-- <Title id="pageTitle" text="{i18n>QSApp}" level="H2" /> -->
+
+            <VBox id="idFilterCard" class="qsCard">
+                <fb:FilterBar id="idHomeFilterBar"
+                    header="{i18n>QSApp}"
+                    search="onSearch"
+                    showClearOnFB="true"
+                    clear="onClearFilters">
+                    <fb:filterItems>
+                        <!-- Company Code -->
+                        <fb:FilterItem name="CompanyCode" label="{i18n>CompCode}">
+                            <fb:control>
+                                <Input id="CompanyCode" showValueHelp="true"
+                                    placeholder="{i18n>Select}"
+                                    valueHelpRequest="onValueHelpPress"
+                                    value="{home>/FilterCompanyCode}" />
+                            </fb:control>
+                        </fb:FilterItem>
+                        <!-- Project -->
+                        <fb:FilterItem name="Project" label="{i18n>Project}">
+                            <fb:control>
+                                <Input id="Project" showValueHelp="true"
+                                    placeholder="{i18n>Select}"
+                                    valueHelpRequest="onValueHelpPress"
+                                    value="{home>/FilterProject}" />
+                            </fb:control>
+                        </fb:FilterItem>
+
+                        <!-- Contract -->
+                        <fb:FilterItem name="Contract" label="{i18n>Contract}">
+                            <fb:control>
+                                <Input id="Contract"
+                                    showValueHelp="true"
+                                    placeholder="{i18n>Select}"
+                                    valueHelpRequest="onValueHelpPress"
+                                    value="{home>/FilterContract}" />
+
+                            </fb:control>
+                        </fb:FilterItem>
+
+                        <!-- Vendor -->
+                        <fb:FilterItem name="vendor" label="{i18n>Contractor}">
+                            <fb:control>
+                                <Input id="Vendor" showValueHelp="true" placeholder="{i18n>Select}"
+                                    valueHelpRequest="onValueHelpPress" value="{home>/FilterVendor}" />
+
+                            </fb:control>
+                        </fb:FilterItem>
+                    </fb:filterItems>
+                </fb:FilterBar>
+            </VBox>
+
+            <!-- Table Card -->
+            <VBox class="qsCard">
+                <!-- Record Count -->
+                <HBox class="qsRecordCount">
+                    <Text text="{i18n>NumberOfRecords} =  " />
+                    <Text text=" {home>/totalRecords}" />
+                </HBox>
+
+                <!-- Table -->
+                <Table
+                    id="contractTable"
+                    items="{ path: 'dataModel>/POHeaderSet', sorter: {path: 'PoNumber', descending: true} }"
+                    class="sdcmTable"
+                    noDataText=""
+                    updateFinished="onTableUpdateFinished">
+                    <columns>
+                        <Column>
+                            <Label text="{i18n>ContractIDHeader}" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>ContractHeader}" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>Contractor}" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>ChangedByHeader}" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>StatusHeader}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem type="Navigation" press="onRowPress">
+                            <cells>
+                                <Text text="{dataModel>PoNumber}" />
+                                <Text text="{dataModel>PurchDoc}" />
+                                <Text text="{dataModel>VendorName}" />
+                                <Text
+                                    text="{= ${dataModel>modifiedBy} ? ${dataModel>modifiedBy} : ${dataModel>createdBy} }" />
+                                <ObjectStatus text="{dataModel>Status}"
+                                    state="{ path: 'dataModel>Status', formatter: '.formatter.statusState' }"
+                                    icon="{ path: 'dataModel>Status', formatter: '.formatter.statusIcon' }" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
+ 

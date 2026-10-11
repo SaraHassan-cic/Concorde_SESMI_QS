@@ -1,0 +1,23 @@
+{
+  "generationParameters": {
+    "generationDate": "Wed Oct 07 2026 17:40:02 GMT+0300 (Eastern European Summer Time)",
+    "generatorPlatform": "Visual Studio Code",
+    "serviceType": "OData URL",
+    "metadataFilename": "",
+    "serviceUrl": "http://demo.cic.local:8005/sap/opu/odata/sap/ZINVOICEMANAGE_SRV/",
+    "appName": "quantitysurvey",
+    "appTitle": "Quantity Survey",
+    "appDescription": "An SAP Fiori application.",
+    "appNamespace": "cic.org",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.108.22",
+    "enableEslint": true,
+    "enableTypeScript": false,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.27.0",
+    "template": "Basic V2",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [],
+    "launchText": "To launch the generated application, run the following from the generated application root folder:\n\n```\n    npm start\n```"
+  }
+}
