@@ -12,7 +12,9 @@ sap.ui.define([
         CompanyCode: "CompCode",
         Contract: "ContCode",
         Vendor: "Vendor",
-        Project: "Project"
+        Project: "Project",
+        WBS: "WBS",             // NEEDS CONFIRMATION from backend
+        DocType: "DOC_TYPE"     // NEEDS CONFIRMATION from backend
     };
 
     // input local id -> i18n key of its label (existing keys)
@@ -20,9 +22,11 @@ sap.ui.define([
         CompanyCode: "CompCode",
         Contract: "Contract",
         Vendor: "Contractor",
-        Project: "Project"
+        Project: "Project",
+        WBS: "WBS",
+        DocType: "DocumentType"
     };
-    return BaseController.extend("cic.org.quantitysurvey.controller.Home", {
+    return BaseController.extend("cic.org.quantitysurvey.controller.Worklist", {
 
         onTableUpdateFinished: function (oEvent) {
             this.getView().getModel("home").setProperty("/totalRecords", oEvent.getParameter("total"));

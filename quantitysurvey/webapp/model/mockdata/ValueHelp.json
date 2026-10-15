@@ -31,21 +31,6 @@
             "idText": "Site Roads"
         },
         {
-            "valueHelpType": "ContCode",
-            "idNumber": "4500001001",
-            "idText": "Civil Works - Block A"
-        },
-        {
-            "valueHelpType": "ContCode",
-            "idNumber": "4500001002",
-            "idText": "MEP Installation - Tower 1"
-        },
-        {
-            "valueHelpType": "ContCode",
-            "idNumber": "4500001003",
-            "idText": "Finishing Works - Block B"
-        },
-        {
             "valueHelpType": "Vendor",
             "idNumber": "V-100",
             "idText": "Alpha Construction Co."
@@ -59,6 +44,51 @@
             "valueHelpType": "Vendor",
             "idNumber": "V-300",
             "idText": "Nile Finishing Ltd."
+        },
+        {
+            "valueHelpType": "WBS",
+            "idNumber": "W-001",
+            "idText": "Superstructure"
+        },
+        {
+            "valueHelpType": "WBS",
+            "idNumber": "W-002",
+            "idText": "MEP Works"
+        },
+        {
+            "valueHelpType": "WBS",
+            "idNumber": "W-003",
+            "idText": "External Works"
+        },
+        {
+            "valueHelpType": "ContCode",
+            "idNumber": "CNTRCT-0190",
+            "idText": "Unit Rate Contract"
+        },
+        {
+            "valueHelpType": "ContCode",
+            "idNumber": "CNTRCT-0194",
+            "idText": "Lumpsum Contract"
+        },
+        {
+            "valueHelpType": "ContCode",
+            "idNumber": "CNTRCT-0198",
+            "idText": "Cost Plus Contract"
+        },
+        {
+            "valueHelpType": "DOC_TYPE",
+            "idNumber": "Unit Rate Contract",
+            "idText": "Unit Rate Contract"
+        },
+        {
+            "valueHelpType": "DOC_TYPE",
+            "idNumber": "Lumpsum Contract",
+            "idText": "Lumpsum Contract"
+        },
+        {
+            "valueHelpType": "DOC_TYPE",
+            "idNumber": "Cost Plus Contract",
+            "idText": "Cost Plus Contract"
         }
     ]
 }

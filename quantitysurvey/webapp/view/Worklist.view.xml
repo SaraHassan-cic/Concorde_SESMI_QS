@@ -1,0 +1,136 @@
+<mvc:View controllerName="cic.org.quantitysurvey.controller.Worklist"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:fb="sap.ui.comp.filterbar"
+    displayBlock="true"
+    height="100%">
+
+    <semantic:SemanticPage id="WorklistPage"
+        headerPinnable="false"
+        toggleHeaderOnTitleClick="false"
+        showFooter="false">
+
+        <semantic:titleHeading>
+            <Title text="{i18n>QSApp}" level="H2" />
+        </semantic:titleHeading>
+
+        <semantic:headerContent>
+            <fb:FilterBar id="idWorklistFilterBar"
+                search=".onSearch"
+                clear=".onClearFilters"
+                showClearOnFB="true">
+                <fb:filterItems>
+                    <fb:FilterItem name="CompanyCode" label="{i18n>CompCode}">
+                        <fb:control>
+                            <Input id="CompanyCode" showValueHelp="true"
+                                placeholder="{i18n>Select}"
+                                valueHelpRequest=".onValueHelpPress"
+                                value="{home>/FilterCompanyCode}" />
+                        </fb:control>
+                    </fb:FilterItem>
+                    <fb:FilterItem name="Project" label="{i18n>Project}">
+                        <fb:control>
+                            <Input id="Project" showValueHelp="true"
+                                placeholder="{i18n>Select}"
+                                valueHelpRequest=".onValueHelpPress"
+                                value="{home>/FilterProject}" />
+                        </fb:control>
+                    </fb:FilterItem>
+                    <fb:FilterItem name="Contract" label="{i18n>Contract}">
+                        <fb:control>
+                            <Input id="Contract" showValueHelp="true"
+                                placeholder="{i18n>Select}"
+                                valueHelpRequest=".onValueHelpPress"
+                                value="{home>/FilterContract}" />
+                        </fb:control>
+                    </fb:FilterItem>
+                    <fb:FilterItem name="WBS" label="{i18n>WBS}">
+                        <fb:control>
+                            <Input id="WBS" showValueHelp="true"
+                                placeholder="{i18n>Select}"
+                                valueHelpRequest=".onValueHelpPress"
+                                value="{home>/FilterWBS}" />
+                        </fb:control>
+                    </fb:FilterItem>
+                    <fb:FilterItem name="vendor" label="{i18n>Contractor}">
+                        <fb:control>
+                            <Input id="Vendor" showValueHelp="true"
+                                placeholder="{i18n>Select}"
+                                valueHelpRequest=".onValueHelpPress"
+                                value="{home>/FilterVendor}" />
+                        </fb:control>
+                    </fb:FilterItem>
+                    <fb:FilterItem name="DocType" label="{i18n>DocumentType}">
+                        <fb:control>
+                            <Input id="DocType" showValueHelp="true"
+                                placeholder="{i18n>Select}"
+                                valueHelpRequest=".onValueHelpPress"
+                                value="{home>/FilterDocType}" />
+                        </fb:control>
+                    </fb:FilterItem>
+                    <fb:FilterItem name="CreatedBy" label="{i18n>CreatedBy}">
+                        <fb:control>
+                            <Input id="CreatedBy" value="{home>/FilterCreatedBy}" />
+                        </fb:control>
+                    </fb:FilterItem>
+                    <fb:FilterItem name="ChangedBy" label="{i18n>ChangedByHeader}">
+                        <fb:control>
+                            <Input id="ChangedBy" value="{home>/FilterChangedBy}" />
+                        </fb:control>
+                    </fb:FilterItem>
+                </fb:filterItems>
+            </fb:FilterBar>
+        </semantic:headerContent>
+
+        <semantic:content>
+            <Table id="contractTable"
+                width="auto"
+                alternateRowColors="true"
+                items="{ path: 'dataModel>/POHeaderSet', sorter: { path: 'PoNumber', descending: true } }"
+                growing="true"
+                growingThreshold="100"
+                growingScrollToLoad="true"
+                updateFinished=".onTableUpdateFinished">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="{i18n>NumberOfRecords} ({home>/totalRecords})" level="H2" />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="{i18n>ContractIDHeader}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>ContractType}" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>CustomerId}" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>CustomerRef}" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>CreatedBy}" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>CreatedOn}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press=".onRowPress">
+                        <cells>
+                            <ObjectIdentifier title="{dataModel>PoNumber}" />
+                            <Text text="{dataModel>DocType}" />
+                            <Text text="{dataModel>CustomerId}" />
+                            <Text text="{dataModel>CustomerRef}" />
+                            <Text text="{dataModel>createdBy}" />
+                            <Text
+                                text="{ path: 'dataModel>CreatedOn', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-dd' }, pattern: 'dd-MM-yyyy' } }" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </semantic:content>
+    </semantic:SemanticPage>
+</mvc:View>

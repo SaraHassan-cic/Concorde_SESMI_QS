@@ -3,5 +3,9 @@
     "FilterProject": "",
     "FilterContract": "",
     "FilterVendor": "",
+    "FilterWBS": "",
+    "FilterDocType": "",
+    "FilterCreatedBy": "",
+    "FilterChangedBy": "",
     "totalRecords": 0
 }
