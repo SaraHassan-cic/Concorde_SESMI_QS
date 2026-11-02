@@ -1,18 +1,188 @@
 <mvc:View controllerName="cic.org.quantitysurvey.controller.Details"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    displayBlock="true">
+    xmlns:f="sap.f"
+    xmlns:l="sap.ui.layout"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:core="sap.ui.core"
+    xmlns:ui="sap.ui.table"
+    displayBlock="true"
+    height="100%">
 
-    <Page id="detailsPage" showNavButton="true" navButtonPress=".onNavBack">
-        <content>
-            <Panel>
-                <content>
-                    <HBox justifyContent="SpaceBetween" class="sapUiMediumMargin">
-                        <Title
-                            text="{details>/poNumber}" />
+    <f:DynamicPage id="detailsPage"
+        fitContent="true"
+        showFooter="true"
+        toggleHeaderOnTitleClick="false">
+
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <HBox alignItems="Center">
+                        <Button icon="sap-icon://nav-back" type="Transparent"
+                            tooltip="{i18n>Back}" press=".onNavBack"
+                            class="sapUiTinyMarginEnd" />
+                        <Title id="pageTitle" text="{details>/poNumber}" level="H2" />
                     </HBox>
-                </content>
-            </Panel>
-        </content>
-    </Page>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <l:Grid defaultSpan="XL2 L3 M6 S12" hSpacing="1" vSpacing="0">
+                    <ObjectAttribute title="{i18n>Customer}" text="{qsData>/header/customer}" />
+                    <ObjectAttribute title="{i18n>ContractType}"
+                        text="{qsData>/header/contractType}" />
+                    <ObjectAttribute title="{i18n>ContractDescription}"
+                        text="{qsData>/header/description}" />
+                    <ObjectAttribute title="{i18n>Project}" text="{qsData>/header/project}" />
+                    <ObjectAttribute title="{i18n>SalesOrg}" text="{qsData>/header/salesOrg}" />
+                    <ObjectAttribute title="{i18n>DistributionChannel}"
+                        text="{qsData>/header/distributionChannel}" />
+                    <ObjectAttribute title="{i18n>Division}" text="{qsData>/header/division}" />
+                    <ObjectAttribute title="{i18n>Currency}" text="{qsData>/header/currency}" />
+                    <ObjectAttribute title="{i18n>ChangedByHeader}"
+                        text="{qsData>/header/changedBy}" />
+                    <ObjectAttribute title="{i18n>ChangedOn}"
+                        text="{ path: 'qsData>/header/changedOn', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-dd' }, pattern: 'dd-MM-yyyy' } }" />
+                </l:Grid>
+
+                <fb:FilterBar id="idDetailsFilterBar"
+                    search=".onSearch"
+                    clear=".onClearFilters"
+                    showClearOnFB="true">
+                    <fb:filterItems>
+                        <fb:FilterItem name="Division" label="{i18n>Division}">
+                            <fb:control>
+                                <Select id="divisionFilter" selectedKey="{details>/divisionFilter}">
+                                    <core:Item key="" text="{i18n>Select}" />
+                                    <core:Item key="Civil" text="Civil" />
+                                    <core:Item key="MEP" text="MEP" />
+                                </Select>
+                            </fb:control>
+                        </fb:FilterItem>
+                        <fb:FilterItem name="ServiceDescription" label="{i18n>ServiceDescription}">
+                            <fb:control>
+                                <Input id="serviceDesc" placeholder="{i18n>Enter}"
+                                    value="{details>/serviceDesc}" />
+                            </fb:control>
+                        </fb:FilterItem>
+                        <fb:FilterItem name="ShowUpdated" label="{i18n>ShowUpdatedServices}">
+                            <fb:control>
+                                <CheckBox id="showUpdated" selected="{details>/showUpdatedServices}" />
+                            </fb:control>
+                        </fb:FilterItem>
+                    </fb:filterItems>
+                </fb:FilterBar>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <f:content>
+            <ui:TreeTable id="boqTree"
+                rows="{ path: 'qsData>/BoqItemSet', parameters: { arrayNames: ['Categories'] } }"
+                selectionMode="Single"
+                visibleRowCountMode="Auto"
+                ariaLabelledBy="pageTitle">
+                <ui:extension>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button text="{i18n>CollapseAll}" press=".onCollapseAll" />
+                        <Button text="{i18n>ExpandAll}" press=".onExpandAll" />
+                    </OverflowToolbar>
+                </ui:extension>
+                <ui:columns>
+                    <ui:Column width="8rem">
+                        <Label text="{i18n>ItemNumber}" />
+                        <ui:template>
+                            <Text text="{qsData>data}" wrapping="false" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="10rem">
+                        <Label text="{i18n>Division}" />
+                        <ui:template>
+                            <Text text="{= ${qsData>levelNo} === 2 ? ${qsData>divisionNo} : '' }"
+                                wrapping="false" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="20rem">
+                        <Label text="{i18n>ServiceDescription}" />
+                        <ui:template>
+                            <Text text="{= ${qsData>levelNo} >= 3 ? ${qsData>description} : '' }"
+                                wrapping="true" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="10rem">
+                        <Label text="{i18n>ContractualIndicator}" />
+                        <ui:template>
+                            <Text
+                                text="{= ${qsData>levelNo} === 4 ? ${qsData>ContractualIndicator} : '' }"
+                                wrapping="false" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="5rem">
+                        <Label text="{i18n>UOM}" />
+                        <ui:template>
+                            <Text text="{= ${qsData>levelNo} === 4 ? ${qsData>uom} : '' }"
+                                wrapping="false" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="8rem" hAlign="End">
+                        <Label text="{i18n>Quantity}" />
+                        <ui:template>
+                            <Text text="{= ${qsData>levelNo} === 4 ? ${qsData>Quantity} : '' }"
+                                wrapping="false" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="8rem" hAlign="End">
+                        <Label text="{i18n>Price}" />
+                        <ui:template>
+                            <Text text="{= ${qsData>levelNo} === 4 ? ${qsData>price} : '' }"
+                                wrapping="false" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="8rem" hAlign="End">
+                        <Label text="{i18n>Amount}" />
+                        <ui:template>
+                            <Text text="{= ${qsData>levelNo} === 4 ? ${qsData>amount} : '' }"
+                                wrapping="false" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="8rem">
+                        <Label text="{i18n>WBS}" />
+                        <ui:template>
+                            <Text text="{= ${qsData>levelNo} === 2 ? ${qsData>WBS} : '' }"
+                                wrapping="false" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="10rem" hAlign="End">
+                        <Label text="{i18n>QSQuantity}" />
+                        <ui:template>
+                            <Input value="{qsData>QsQuantity}" type="Number"
+                                placeholder="{i18n>Enter}"
+                                enabled="{details>/isEditable}"
+                                visible="{= ${qsData>levelNo} === 4 }" />
+                        </ui:template>
+                    </ui:Column>
+                </ui:columns>
+            </ui:TreeTable>
+        </f:content>
+
+        <f:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button icon="sap-icon://upload-to-cloud" text="{i18n>Upload}"
+                    press=".onUpload" visible="{= !${details>/isEditable} }" />
+                <Button icon="sap-icon://download-from-cloud" text="{i18n>Download}"
+                    press=".onDownload" visible="{= !${details>/isEditable} }" />
+                <Button icon="sap-icon://edit" text="{i18n>Edit}"
+                    press=".onEdit" visible="{= !${details>/isEditable} }" />
+                <Button text="{i18n>Release}" type="Emphasized"
+                    press=".onRelease" visible="{= !${details>/isEditable} }" />
+                <Button text="{i18n>Save}" type="Emphasized"
+                    press=".onSave" visible="{details>/isEditable}" />
+                <Button text="{i18n>Cancel}"
+                    press=".onCancelEdit" visible="{details>/isEditable}" />
+            </OverflowToolbar>
+        </f:footer>
+    </f:DynamicPage>
 </mvc:View>

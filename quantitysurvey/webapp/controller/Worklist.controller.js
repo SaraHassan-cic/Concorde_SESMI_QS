@@ -4,8 +4,11 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/model/json/JSONModel",
-    "sap/m/MessageBox"
-], function (BaseController, Fragment, Filter, FilterOperator, JSONModel, MessageBox) {
+    "sap/m/MessageBox",
+    "sap/m/MessageToast",
+    "sap/ui/export/Spreadsheet",
+    "sap/ui/export/library"
+], function (BaseController, Fragment, Filter, FilterOperator, JSONModel, MessageBox, MessageToast, Spreadsheet, exportLibrary) {
     "use strict";
     // input local id -> valueHelpType in ValueHelpSet (NEEDS CONFIRMATION from backend)
     var mValueHelpTypes = {
@@ -17,6 +20,7 @@ sap.ui.define([
         DocType: "DOC_TYPE"     // NEEDS CONFIRMATION from backend
     };
 
+    var EdmType = exportLibrary.EdmType;
     // input local id -> i18n key of its label (existing keys)
     var mTitleKeys = {
         CompanyCode: "CompCode",
@@ -139,7 +143,69 @@ sap.ui.define([
                 }.bind(this));
             }
             return this._pValueHelp;
+        },
+        onExcelDownloadButtonPress: function () {
+            var oRowBinding = this.byId("contractTable").getBinding("items");
+            var oBundle = this.getView().getModel("i18n").getResourceBundle();
+
+            if (!oRowBinding || !oRowBinding.getLength()) {
+                MessageToast.show(oBundle.getText("NoDataToExport"));
+                return;
+            }
+
+            var oSheet = new Spreadsheet({
+                workbook: { columns: this.createColumnConfig() },
+                dataSource: this._getExportDataSource(oRowBinding),
+                fileName: oBundle.getText("ContractReportFile") + ".xlsx"
+            });
+
+            oSheet.build()
+                .then(function () {
+                    MessageToast.show(oBundle.getText("ExportFinished"));
+                })
+                .catch(function (oError) {
+                    MessageBox.error(oBundle.getText("ExportFailed"), { details: oError && oError.message });
+                })
+                .finally(function () {
+                    oSheet.destroy();
+                });
+        },
+
+        _getExportDataSource: function (oRowBinding) {
+            var oModel = oRowBinding.getModel();
+
+            if (oModel.isA("sap.ui.model.odata.v2.ODataModel")) {
+                // V2: the export requests ALL matching rows itself, with the table's current filters/sorters
+                return {
+                    type: "odata",
+                    dataUrl: oRowBinding.getDownloadUrl(),
+                    serviceUrl: oModel.sServiceUrl,
+                    headers: oModel.getHttpHeaders(),
+                    count: oRowBinding.getLength(),
+                    useBatch: true,
+                    sizeLimit: oModel.getSizeLimit()
+                };
+            }
+
+            // Mock JSON model: export the rows currently bound (filters/sorters already applied)
+            return oRowBinding.getContexts(0, oRowBinding.getLength()).map(function (oContext) {
+                return oContext.getObject();
+            });
+        },
+
+        createColumnConfig: function () {
+            var oBundle = this.getView().getModel("i18n").getResourceBundle();
+            return [
+                { label: oBundle.getText("ContractIDHeader"), property: "PoNumber", type: EdmType.String },
+                { label: oBundle.getText("ContractHeader"), property: "PurchDoc", type: EdmType.String },
+                { label: oBundle.getText("ContractType"), property: "DocType", type: EdmType.String },
+                { label: oBundle.getText("PurchOrg"), property: "PurchOrg", type: EdmType.String },
+                { label: oBundle.getText("Contractor"), property: "VendorName", type: EdmType.String },
+                { label: oBundle.getText("CreatedBy"), property: "createdBy", type: EdmType.String },
+                { label: oBundle.getText("ChangedByHeader"), property: "modifiedBy", type: EdmType.String },
+                { label: oBundle.getText("StatusHeader"), property: "Status", type: EdmType.String }
+            ];
         }
 
     });
-}); ``
+}); 

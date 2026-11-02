@@ -50,7 +50,11 @@
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
-        "sap.ui.comp": {}
+        "sap.ui.comp": {},
+        "sap.f": {},
+        "sap.ui.layout": {},
+        "sap.ui.table": {},
+        "sap.ui.export": {}
       }
     },
     "contentDensities": {
@@ -79,6 +83,10 @@
       "valueHelp": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/mockdata/ValueHelp.json"
+      },
+      "qsData": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/mockdata/QsDetails.json"
       }
     },
     "resources": {

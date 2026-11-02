@@ -1,0 +1,148 @@
+{
+    "header": {
+        "customer": "5000000 - Mock Customer",
+        "contractType": "Unit Rate",
+        "description": "Civil Works - Block A",
+        "project": "Block A",
+        "salesOrg": "1000",
+        "distributionChannel": "10",
+        "division": "00",
+        "currency": "EGP",
+        "changedBy": "MONA",
+        "changedOn": "2026-10-07"
+    },
+    "BoqItemSet": [
+        {
+            "data": "10",
+            "levelNo": 2,
+            "divisionNo": "Civil",
+            "WBS": "WBS-CIV-01",
+            "Categories": [
+                {
+                    "data": "10.10",
+                    "levelNo": 3,
+                    "description": "Concrete Works",
+                    "Categories": [
+                        {
+                            "data": "0001",
+                            "levelNo": 4,
+                            "description": "Reinforced concrete C30 - foundations",
+                            "ContractualIndicator": "Contractual",
+                            "uom": "M3",
+                            "Quantity": 120,
+                            "price": 450,
+                            "amount": 54000,
+                            "QsQuantity": ""
+                        },
+                        {
+                            "data": "0002",
+                            "levelNo": 4,
+                            "description": "Reinforced concrete C30 - columns",
+                            "ContractualIndicator": "Contractual",
+                            "uom": "M3",
+                            "Quantity": 85.5,
+                            "price": 1200,
+                            "amount": 102600,
+                            "QsQuantity": ""
+                        }
+                    ]
+                },
+                {
+                    "data": "10.20",
+                    "levelNo": 3,
+                    "description": "Masonry Works",
+                    "Categories": [
+                        {
+                            "data": "0003",
+                            "levelNo": 4,
+                            "description": "Brick walls 20 cm",
+                            "ContractualIndicator": "Contractual",
+                            "uom": "M2",
+                            "Quantity": 300,
+                            "price": 95,
+                            "amount": 28500,
+                            "QsQuantity": ""
+                        },
+                        {
+                            "data": "0004",
+                            "levelNo": 4,
+                            "description": "Brick walls 12 cm",
+                            "ContractualIndicator": "Additional",
+                            "uom": "M2",
+                            "Quantity": 40,
+                            "price": 2750,
+                            "amount": 110000,
+                            "QsQuantity": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "data": "20",
+            "levelNo": 2,
+            "divisionNo": "MEP",
+            "WBS": "WBS-MEP-01",
+            "Categories": [
+                {
+                    "data": "20.10",
+                    "levelNo": 3,
+                    "description": "Electrical Works",
+                    "Categories": [
+                        {
+                            "data": "0005",
+                            "levelNo": 4,
+                            "description": "Cable tray 300 mm",
+                            "ContractualIndicator": "Contractual",
+                            "uom": "M",
+                            "Quantity": 1500,
+                            "price": 18.5,
+                            "amount": 27750,
+                            "QsQuantity": ""
+                        },
+                        {
+                            "data": "0006",
+                            "levelNo": 4,
+                            "description": "Distribution board DB-1",
+                            "ContractualIndicator": "Contractual",
+                            "uom": "EA",
+                            "Quantity": 10,
+                            "price": 15000,
+                            "amount": 150000,
+                            "QsQuantity": ""
+                        }
+                    ]
+                },
+                {
+                    "data": "20.20",
+                    "levelNo": 3,
+                    "description": "Plumbing Works",
+                    "Categories": [
+                        {
+                            "data": "0007",
+                            "levelNo": 4,
+                            "description": "PVC pipe 110 mm",
+                            "ContractualIndicator": "Contractual",
+                            "uom": "M",
+                            "Quantity": 220,
+                            "price": 310,
+                            "amount": 68200,
+                            "QsQuantity": ""
+                        },
+                        {
+                            "data": "0008",
+                            "levelNo": 4,
+                            "description": "Sanitary fixtures",
+                            "ContractualIndicator": "Additional",
+                            "uom": "EA",
+                            "Quantity": 62.25,
+                            "price": 880,
+                            "amount": 54780,
+                            "QsQuantity": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
